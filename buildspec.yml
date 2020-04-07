@@ -7,16 +7,23 @@ phases:
       - yum install -y maven
     finally:
       - echo This always runs even if the update or install command fails
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - $(aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 324017272082.dkr.ecr.us-east-2.amazonaws.com/akotau)
   build:
     commands:
       - echo Entered the build phase...
       - echo Build started on `date`
       - mvn package
+      - docker build -t akotau .
     finally:
       - echo This always runs even if the install command fails
   post_build:
     commands:
       - echo Entered the post_build phase...
+      - docker tag akotau:latest 324017272082.dkr.ecr.us-east-2.amazonaws.com/akotau:latest
+      - docker push 324017272082.dkr.ecr.us-east-2.amazonaws.com/akotau:latest
       - echo Build completed on `date`
 
 artifacts:
