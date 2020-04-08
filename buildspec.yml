@@ -27,6 +27,8 @@ phases:
       - docker tag akotau:latest 324017272082.dkr.ecr.us-east-2.amazonaws.com/akotau:latest
       - docker push 324017272082.dkr.ecr.us-east-2.amazonaws.com/akotau:latest
       - echo Build completed on `date`
+      - echo Writing image definitions file...
+      - printf '[{"name":"hello_app","imageUri":"%s"}]' 324017272082.dkr.ecr.us-east-2.amazonaws.com/akotau:latest > imagedefinitions.json
 
 artifacts:
   files:
