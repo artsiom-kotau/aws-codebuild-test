@@ -28,7 +28,7 @@ phases:
       - docker push 324017272082.dkr.ecr.us-east-2.amazonaws.com/hello-app-service:latest
       - echo Build completed on `date`
       - echo Writing image definitions file...
-      - printf '[{"name":"HelloAppContainer","imageUri":"%s"}]' 324017272082.dkr.ecr.us-east-2.amazonaws.com/hello-app-service:latest > imagedefinitions.json
+      - printf '[{"name":"hello-app-service-container","imageUri":"%s"}]' 324017272082.dkr.ecr.us-east-2.amazonaws.com/hello-app-service:latest > imagedefinitions.json
 
 artifacts:
   files:
