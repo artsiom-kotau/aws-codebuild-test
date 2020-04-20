@@ -34,6 +34,7 @@ phases:
 artifacts:
   files:
     - imagedefinitions.json
+    - Dockerrun.aws.json
   discard-paths: yes
 cache:
   paths:
