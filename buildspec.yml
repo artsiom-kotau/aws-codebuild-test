@@ -29,10 +29,10 @@ phases:
       - echo Build completed on `date`
       - echo Writing image definitions file...
       - printf '[{"name":"hello-app-service-container","imageUri":"%s"}]' 324017272082.dkr.ecr.us-east-2.amazonaws.com/hello-app-service:latest > imagedefinitions.json
+      - printf '[{"AWSEBDockerrunVersion":2, "containerDefinitions":[{"name":"hello-app-service","image":"%s" }]}]' 324017272082.dkr.ecr.us-east-2.amazonaws.com/hello-app-service:latest > Dockerrun.aws.json
 
 artifacts:
   files:
-    - target/aws-code-build.jar
     - imagedefinitions.json
   discard-paths: yes
 cache:
